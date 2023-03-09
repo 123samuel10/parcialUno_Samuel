@@ -1,0 +1,15 @@
+body{
+    font-family: arial,helvetics;
+    background: black;
+}
+.principal{
+    list-style: none;
+    padding: 0;
+    width: 90%;
+    max-width: 100px;
+    background: black;
+
+}
+.titulo{
+
+}
