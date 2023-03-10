@@ -4,6 +4,7 @@ import java.io.*;
 
 import com.example.demo3.controller.ModelFactoryController;
 import com.example.demo3.service.serviceImpl.ClientServiceImpl;
+import com.example.demo3.util.BaseDeDatos;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -22,9 +23,11 @@ public class SvEmployee extends HttpServlet {
     ModelFactoryController mfc=ModelFactoryController.getInstance();
    // ClientServiceImpl clientService=new ClientServiceImpl();
 
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
-        session.setAttribute("mfc",mfc);
+        mfc.getLaboratory().getClientService().setClients(BaseDeDatos.productListSQL());
+        session.setAttribute("mfc", mfc);
         response.sendRedirect("listClients.jsp");
 
 
@@ -41,7 +44,6 @@ public class SvEmployee extends HttpServlet {
         int password= Integer.parseInt(req.getParameter("password"));
         //clientService.add(name,age,mail,password);
         mfc.add(name,age,mail,password);
-
 
 
         mfc.getLaboratory().getClientService().getClients().stream().forEach(client -> {
